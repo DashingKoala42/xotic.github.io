@@ -263,22 +263,7 @@
     display:block;
   }
 
-  #videoContainer{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:#000;
-    z-index:9000;
-  }
-  #videoContainer video{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-  }
-
-  #library{
-    display:none;
-  }
+  #library{display:none}
 </style>
 </head>
 <body>
@@ -345,13 +330,11 @@
     { name: "racist3.png", url: "/racist3.png" },
     { name: "blackmail1.png", url: "/blackmail1.png" },
     { name: "weirdtomembers.png", url: "/weirdtomembers.png" },
-    { name: "xotic.mp4", url: "/tiktok_nayax312_7582344903166856450.mp4" }
+    { name: "xotic.mp4", url: "/xotic.mp4" }
   ]
 
   const ageGate = document.getElementById("ageGate")
   const library = document.getElementById("library")
-  const videoContainer = document.getElementById("videoContainer")
-  const introVideo = document.getElementById("introVideo")
 
   const q = document.getElementById("q")
   const btn = document.getElementById("btn")
@@ -366,14 +349,9 @@
 
   function enterSite(){
     ageGate.style.display = "none"
-    videoContainer.style.display = "block"
-    try{ introVideo.play() }catch(e){}
-    setTimeout(() => {
-      videoContainer.style.display = "none"
-      library.style.display = "block"
-      render(files)
-      q.focus()
-    }, 1500)
+    library.style.display = "block"
+    render(files)
+    q.focus()
   }
 
   function denyAccess(){
@@ -442,5 +420,3 @@
 
 </body>
 </html>
-
-
