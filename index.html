@@ -194,6 +194,14 @@
   }
 
   #library{display:none}
+
+  #err{
+    display:none;
+    margin-top:14px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:#b00020;
+    font-weight:800;
+  }
 </style>
 </head>
 <body>
@@ -219,9 +227,11 @@
   <div class="line"></div>
 
   <div class="buttons">
-    <button class="btn btn-yes" onclick="enterSite()">Yes</button>
-    <button class="btn btn-no" onclick="denyAccess()">No</button>
+    <button class="btn btn-yes" id="yesBtn" type="button">Yes</button>
+    <button class="btn btn-no" id="noBtn" type="button">No</button>
   </div>
+
+  <div id="err"></div>
 </div>
 
 <div class="wrap" id="library">
@@ -230,7 +240,7 @@
 
   <div class="searchRow">
     <input id="q" type="text" placeholder="Type to search..." autocomplete="off">
-    <button id="btn">Search</button>
+    <button id="btn" type="button">Search</button>
   </div>
 
   <div id="results" class="results"></div>
@@ -257,11 +267,19 @@
 
   const ageGate = document.getElementById("ageGate")
   const library = document.getElementById("library")
+  const yesBtn = document.getElementById("yesBtn")
+  const noBtn = document.getElementById("noBtn")
+  const err = document.getElementById("err")
 
   const q = document.getElementById("q")
   const btn = document.getElementById("btn")
   const results = document.getElementById("results")
   const empty = document.getElementById("empty")
+
+  function showErr(msg){
+    err.style.display = "block"
+    err.textContent = msg
+  }
 
   function enterSite(){
     ageGate.style.display = "none"
@@ -308,7 +326,18 @@
     render(filtered)
   }
 
-  btn.addEventListener("click", searchNow)
+  yesBtn.addEventListener("click", () => {
+    try { enterSite() } catch (e) { showErr("Script error on Yes: " + e.message) }
+  })
+
+  noBtn.addEventListener("click", () => {
+    try { denyAccess() } catch (e) { showErr("Script error on No: " + e.message) }
+  })
+
+  btn.addEventListener("click", () => {
+    try { searchNow() } catch (e) { alert(e.message) }
+  })
+
   q.addEventListener("keydown", (e) => {
     if (e.key === "Enter") searchNow()
   })
