@@ -6,146 +6,232 @@
 <title>The Blacket Files</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Titan+One&display=swap" rel="stylesheet">
 <style>
-:root{
-  --blue:#0b4f7a;
-  --blue2:#0a5a93;
-  --bg:#f2f2f2;
-  --text:#0b2942;
-  --muted:#647184;
-  --line:#ffbf47;
-  --card:#ffffff;
-  --shadow:0 10px 30px rgba(0,0,0,.12);
-  --nav:#1f3a5f;
-}
+  :root{
+    --blue:#0b4f7a;
+    --blue2:#0a5a93;
+    --bg:#f2f2f2;
+    --text:#0b2942;
+    --muted:#647184;
+    --line:#ffbf47;
+    --card:#ffffff;
+    --shadow:0 10px 30px rgba(0,0,0,.12);
+    --nav:#1f3a5f;
+  }
 
-html,body{height:100%}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family: Georgia, serif;
-}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family: Georgia, serif;
+  }
 
-.topbar{
-  background:var(--nav);
-  color:#fff;
-  padding:14px 24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.brand{
-  font-family:'Titan One', cursive;
-  font-size:28px;
-  color:#fff;
-}
-.navlinks a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:18px;
-}
+  .topbar{
+    background:var(--nav);
+    color:#fff;
+    padding:14px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Titan One', cursive;
+    font-size:28px;
+    letter-spacing:.3px;
+    color:#fff;
+    user-select:none;
+  }
+  .navlinks{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size:14px;
+  }
+  .navlinks a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:18px;
+    opacity:.95;
+  }
+  .navlinks a:hover{opacity:1;text-decoration:underline}
 
-.breadcrumb{
-  background:#e9ecef;
-  padding:12px 24px;
-  font-size:14px;
-}
+  .breadcrumb{
+    background:#e9ecef;
+    padding:12px 24px;
+    font-size:14px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  .breadcrumb a{
+    color:#005ea2;
+    text-decoration:none;
+  }
 
-.wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:64px 24px 80px;
-}
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:64px 24px 80px;
+  }
 
-h1{margin:0;font-size:44px}
-.line{width:60px;height:4px;background:var(--line);margin:18px 0 28px}
+  h1{
+    margin:0;
+    font-size:44px;
+    font-weight:700;
+    letter-spacing:.2px;
+  }
+  .line{
+    width:60px;
+    height:4px;
+    background:var(--line);
+    margin:18px 0 28px;
+  }
 
-.question{font-size:28px;margin-bottom:18px}
-.buttons{margin-top:18px}
-.btn{
-  font-size:16px;
-  padding:12px 40px;
-  border-radius:4px;
-  cursor:pointer;
-  margin-right:15px;
-  font-weight:800;
-}
-.btn-yes{background:#fff;border:2px solid #005ea2;color:#005ea2}
-.btn-no{background:var(--nav);border:2px solid var(--nav);color:#fff}
+  .question{
+    font-size:28px;
+    margin:0 0 18px;
+  }
+  .buttons{margin-top:18px}
+  .btn{
+    font-size:16px;
+    padding:12px 40px;
+    border-radius:4px;
+    cursor:pointer;
+    margin-right:15px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:800;
+  }
+  .btn-yes{
+    background:#fff;
+    border:2px solid #005ea2;
+    color:#005ea2;
+  }
+  .btn-no{
+    background:var(--nav);
+    border:2px solid var(--nav);
+    color:#fff;
+  }
+  .btn:hover{opacity:.88}
 
-.searchRow{display:flex;gap:12px;margin:8px 0 22px}
-.searchRow input{
-  width:min(520px,100%);
-  padding:12px;
-  border:1px solid #c8d2dc;
-}
-.searchRow button{
-  padding:12px 18px;
-  background:var(--blue);
-  color:#fff;
-  border:none;
-  font-weight:800;
-}
+  .searchRow{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin:8px 0 22px;
+  }
+  .searchRow input{
+    width:min(520px, 100%);
+    font-size:16px;
+    padding:12px 14px;
+    border:1px solid #c8d2dc;
+    border-radius:2px;
+    outline:none;
+    background:#fff;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  .searchRow input:focus{
+    border-color:#8fb3cf;
+    box-shadow:0 0 0 3px rgba(11,79,122,.12);
+  }
+  .searchRow button{
+    font-size:15px;
+    padding:12px 18px;
+    border-radius:4px;
+    border:1px solid var(--blue);
+    background:var(--blue);
+    color:#fff;
+    cursor:pointer;
+    font-weight:800;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+  .searchRow button:hover{background:var(--blue2);border-color:var(--blue2)}
 
-.results{
-  margin-top:26px;
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap:14px;
-}
-.card{
-  background:var(--card);
-  border:1px solid #e3e8ee;
-  border-radius:10px;
-  padding:14px;
-  cursor:pointer;
-  transition:.15s;
-}
-.card:hover{transform:translateY(-2px)}
+  .note{
+    margin-top:48px;
+    color:var(--muted);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size:14px;
+    max-width:860px;
+  }
 
-#library{display:none}
+  .results{
+    margin-top:26px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap:14px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid #e3e8ee;
+    border-radius:10px;
+    padding:14px 14px 12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+    cursor:pointer;
+    transform:translateZ(0);
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(0,0,0,.10);
+  }
+  .fileName{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:800;
+    color:#0b2942;
+    font-size:15px;
+    word-break:break-word;
+  }
+  .hint{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size:13px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+  .empty{
+    margin-top:18px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--muted);
+    font-size:14px;
+  }
 
-#introVideoContainer{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:none;
-  z-index:9999;
-  opacity:1;
-  transition:opacity 1s ease;
-}
-#introVideoContainer video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+  #library{display:none}
+
+  #err{
+    display:none;
+    margin-top:14px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:#b00020;
+    font-weight:800;
+  }
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="brand">Blacket</div>
+  <div class="navlinks">
+    <a href="#" onclick="return false;">Our Offices</a>
+    <a href="#" onclick="return false;">Find Help</a>
+    <a href="#" onclick="return false;">Contact Us</a>
+  </div>
 </div>
 
 <div class="breadcrumb">
-  blacketfiles.org › Library
+  <a href="#" onclick="return false;">blacketfiles.org</a> › Library
 </div>
 
 <div class="wrap" id="ageGate">
   <h1>Blacket Library</h1>
   <div class="line"></div>
+
   <div class="question">Are you 18 years of age or older?</div>
   <div class="line"></div>
-  <div class="buttons">
-    <button class="btn btn-yes" onclick="enterSite()">Yes</button>
-    <button class="btn btn-no" onclick="alert('Access denied.')">No</button>
-  </div>
-</div>
 
-<div id="introVideoContainer">
-  <video id="introVideo" autoplay muted playsinline>
-    <source src="https://blacketfiles.org/video(1).mp4" type="video/mp4">
-  </video>
+  <div class="buttons">
+    <button class="btn btn-yes" id="yesBtn" type="button">Yes</button>
+    <button class="btn btn-no" id="noBtn" type="button">No</button>
+  </div>
+
+  <div id="err"></div>
 </div>
 
 <div class="wrap" id="library">
@@ -153,15 +239,20 @@ h1{margin:0;font-size:44px}
   <div class="line"></div>
 
   <div class="searchRow">
-    <input id="q" type="text" placeholder="Type to search...">
-    <button id="btn">Search</button>
+    <input id="q" type="text" placeholder="Type to search..." autocomplete="off">
+    <button id="btn" type="button">Search</button>
   </div>
 
   <div id="results" class="results"></div>
+  <div id="empty" class="empty" style="display:none;">No results found.</div>
+
+  <div class="note">
+    <strong>Note on Search Functionality:</strong> Due to technical limitations and the format of certain materials (e.g., handwritten text), portions of these documents may not be electronically searchable or may produce unreliable search results.
+  </div>
 </div>
 
 <script>
-const files = [
+  const files = [
     { name: "racist1.png", url: "/racist1.png" },
     { name: "racist2.png", url: "/racist2.png" },
     { name: "racist3.png", url: "/racist3.png" },
@@ -177,39 +268,84 @@ const files = [
     { name: "beingweird4.png", url: "/beingweird4.png" },
     { name: "javascript_with_zastix.png", url: "/javascript_with_zastix.png" },
     { name: "xotic.mp4", url: "/xotic.mp4" }
-]
+  ]
 
-const ageGate = document.getElementById("ageGate")
-const library = document.getElementById("library")
-const videoContainer = document.getElementById("introVideoContainer")
-const introVideo = document.getElementById("introVideo")
-const results = document.getElementById("results")
+  const ageGate = document.getElementById("ageGate")
+  const library = document.getElementById("library")
+  const yesBtn = document.getElementById("yesBtn")
+  const noBtn = document.getElementById("noBtn")
+  const err = document.getElementById("err")
 
-function enterSite(){
-  ageGate.style.display = "none"
-  videoContainer.style.display = "block"
-  introVideo.play()
+  const q = document.getElementById("q")
+  const btn = document.getElementById("btn")
+  const results = document.getElementById("results")
+  const empty = document.getElementById("empty")
 
-  setTimeout(() => {
-    videoContainer.style.opacity = "0"
-    setTimeout(() => {
-      videoContainer.style.display = "none"
-      library.style.display = "block"
-      render(files)
-    }, 1000)
-  }, 3000)
-}
-
-function render(list){
-  results.innerHTML = ""
-  for(const f of list){
-    const card = document.createElement("div")
-    card.className = "card"
-    card.textContent = f.name
-    card.onclick = () => window.location.href = f.url
-    results.appendChild(card)
+  function showErr(msg){
+    err.style.display = "block"
+    err.textContent = msg
   }
-}
+
+  function enterSite(){
+    ageGate.style.display = "none"
+    library.style.display = "block"
+    render(files)
+    q.focus()
+  }
+
+  function denyAccess(){
+    alert("Access denied.")
+  }
+
+  function openFile(f){
+    window.location.href = f.url
+  }
+
+  function render(list){
+    results.innerHTML = ""
+    empty.style.display = list.length ? "none" : "block"
+
+    for (const f of list){
+      const card = document.createElement("div")
+      card.className = "card"
+      card.tabIndex = 0
+      card.innerHTML = '<div class="fileName"></div><div class="hint">Click to open</div>'
+      card.querySelector(".fileName").textContent = f.name
+
+      card.addEventListener("click", () => openFile(f))
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") openFile(f)
+      })
+
+      results.appendChild(card)
+    }
+  }
+
+  function searchNow(){
+    const term = q.value.trim().toLowerCase()
+    if (!term){
+      render(files)
+      return
+    }
+    const filtered = files.filter(f => f.name.toLowerCase().includes(term))
+    render(filtered)
+  }
+
+  yesBtn.addEventListener("click", () => {
+    try { enterSite() } catch (e) { showErr("Script error on Yes: " + e.message) }
+  })
+
+  noBtn.addEventListener("click", () => {
+    try { denyAccess() } catch (e) { showErr("Script error on No: " + e.message) }
+  })
+
+  btn.addEventListener("click", () => {
+    try { searchNow() } catch (e) { alert(e.message) }
+  })
+
+  q.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") searchNow()
+  })
 </script>
 
 </body>
