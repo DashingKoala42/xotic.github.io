@@ -267,29 +267,39 @@
 
   const ageGate = document.getElementById("ageGate")
   const library = document.getElementById("library")
-  const yesBtn = document.getElementById("yesBtn")
-  const noBtn = document.getElementById("noBtn")
-  const err = document.getElementById("err")
 
   const q = document.getElementById("q")
   const btn = document.getElementById("btn")
   const results = document.getElementById("results")
   const empty = document.getElementById("empty")
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    const ageStatus = localStorage.getItem("ageVerified")
 
-  function showErr(msg){
-    err.style.display = "block"
-    err.textContent = msg
-  }
+    if (ageStatus === "yes") {
+      showLibrary()
+    }
+
+    if (ageStatus === "no") {
+      ageGate.innerHTML = "<h1>Access Denied</h1>"
+    }
+  })
 
   function enterSite(){
+    localStorage.setItem("ageVerified", "yes")
+    showLibrary()
+  }
+
+  function denyAccess(){
+    localStorage.setItem("ageVerified", "no")
+    ageGate.innerHTML = "<h1>Access Denied</h1>"
+  }
+
+  function showLibrary(){
     ageGate.style.display = "none"
     library.style.display = "block"
     render(files)
     q.focus()
-  }
-
-  function denyAccess(){
-    alert("Access denied.")
   }
 
   function openFile(f){
@@ -326,18 +336,7 @@
     render(filtered)
   }
 
-  yesBtn.addEventListener("click", () => {
-    try { enterSite() } catch (e) { showErr("Script error on Yes: " + e.message) }
-  })
-
-  noBtn.addEventListener("click", () => {
-    try { denyAccess() } catch (e) { showErr("Script error on No: " + e.message) }
-  })
-
-  btn.addEventListener("click", () => {
-    try { searchNow() } catch (e) { alert(e.message) }
-  })
-
+  btn.addEventListener("click", searchNow)
   q.addEventListener("keydown", (e) => {
     if (e.key === "Enter") searchNow()
   })
@@ -345,4 +344,5 @@
 
 </body>
 </html>
+
 
