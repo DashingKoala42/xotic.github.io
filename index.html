@@ -193,76 +193,6 @@
     font-size:14px;
   }
 
-  .modalBack{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.68);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:18px;
-    z-index:9999;
-  }
-  .modal{
-    width:min(980px, 100%);
-    background:#0b0f14;
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:16px;
-    box-shadow:var(--shadow);
-    overflow:hidden;
-    position:relative;
-    transform:scale(.88);
-    opacity:0;
-  }
-  .modal.show{animation:zoomIn .18s ease-out forwards}
-  @keyframes zoomIn{
-    from{transform:scale(.88);opacity:0}
-    to{transform:scale(1);opacity:1}
-  }
-  .modalTop{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:12px 14px;
-    background:rgba(255,255,255,.06);
-  }
-  .modalTitle{
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color:#fff;
-    font-weight:800;
-    font-size:14px;
-    opacity:.92;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-  .closeBtn{
-    border:none;
-    background:rgba(255,255,255,.10);
-    color:#fff;
-    font-weight:900;
-    width:36px;
-    height:32px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-  }
-  .closeBtn:hover{background:rgba(255,255,255,.16)}
-  .modalBody{
-    background:#000;
-    display:grid;
-    place-items:center;
-    min-height:320px;
-  }
-  .modalBody img{
-    width:100%;
-    height:auto;
-    max-height:82vh;
-    object-fit:contain;
-    display:block;
-  }
-
   #library{display:none}
 </style>
 </head>
@@ -311,18 +241,6 @@
   </div>
 </div>
 
-<div id="back" class="modalBack" aria-hidden="true">
-  <div id="modal" class="modal" role="dialog" aria-modal="true">
-    <div class="modalTop">
-      <div id="modalTitle" class="modalTitle"></div>
-      <button id="close" class="closeBtn" aria-label="Close">✕</button>
-    </div>
-    <div class="modalBody">
-      <img id="viewer" alt="">
-    </div>
-  </div>
-</div>
-
 <script>
   const files = [
     { name: "racist1.png", url: "/racist1.png" },
@@ -330,7 +248,7 @@
     { name: "racist3.png", url: "/racist3.png" },
     { name: "blackmail1.png", url: "/blackmail1.png" },
     { name: "weirdtomembers.png", url: "/weirdtomembers.png" },
-    { name: "xotic.mp4", url: "/xotic.mp4" }
+    { name: "xotic.mp4", url: "/tiktok_nayax312_7582344903166856450.mp4" }
   ]
 
   const ageGate = document.getElementById("ageGate")
@@ -340,12 +258,6 @@
   const btn = document.getElementById("btn")
   const results = document.getElementById("results")
   const empty = document.getElementById("empty")
-
-  const back = document.getElementById("back")
-  const modal = document.getElementById("modal")
-  const close = document.getElementById("close")
-  const viewer = document.getElementById("viewer")
-  const modalTitle = document.getElementById("modalTitle")
 
   function enterSite(){
     ageGate.style.display = "none"
@@ -358,6 +270,10 @@
     alert("Access denied.")
   }
 
+  function openFile(f){
+    window.location.href = f.url
+  }
+
   function render(list){
     results.innerHTML = ""
     empty.style.display = list.length ? "none" : "block"
@@ -366,13 +282,14 @@
       const card = document.createElement("div")
       card.className = "card"
       card.tabIndex = 0
-      card.innerHTML = '<div class="fileName"></div><div class="hint">Click to preview</div>'
+      card.innerHTML = '<div class="fileName"></div><div class="hint">Click to open</div>'
       card.querySelector(".fileName").textContent = f.name
 
-      card.addEventListener("click", () => openViewer(f))
+      card.addEventListener("click", () => openFile(f))
       card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") openViewer(f)
+        if (e.key === "Enter" || e.key === " ") openFile(f)
       })
+
       results.appendChild(card)
     }
   }
@@ -387,34 +304,9 @@
     render(filtered)
   }
 
-  function openViewer(f){
-    viewer.src = f.url
-    viewer.alt = f.name
-    modalTitle.textContent = f.name
-    back.style.display = "flex"
-    modal.classList.remove("show")
-    void modal.offsetWidth
-    modal.classList.add("show")
-    back.setAttribute("aria-hidden","false")
-  }
-
-  function closeViewer(){
-    back.style.display = "none"
-    back.setAttribute("aria-hidden","true")
-    viewer.src = ""
-  }
-
   btn.addEventListener("click", searchNow)
   q.addEventListener("keydown", (e) => {
     if (e.key === "Enter") searchNow()
-  })
-
-  close.addEventListener("click", closeViewer)
-  back.addEventListener("click", (e) => {
-    if (e.target === back) closeViewer()
-  })
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeViewer()
   })
 </script>
 
