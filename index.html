@@ -194,14 +194,6 @@
   }
 
   #library{display:none}
-
-  #err{
-    display:none;
-    margin-top:14px;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color:#b00020;
-    font-weight:800;
-  }
 </style>
 </head>
 <body>
@@ -227,11 +219,9 @@
   <div class="line"></div>
 
   <div class="buttons">
-    <button class="btn btn-yes" id="yesBtn" type="button">Yes</button>
-    <button class="btn btn-no" id="noBtn" type="button">No</button>
+    <button class="btn btn-yes" onclick="enterSite()">Yes</button>
+    <button class="btn btn-no" onclick="denyAccess()">No</button>
   </div>
-
-  <div id="err"></div>
 </div>
 
 <div class="wrap" id="library">
@@ -240,7 +230,7 @@
 
   <div class="searchRow">
     <input id="q" type="text" placeholder="Type to search..." autocomplete="off">
-    <button id="btn" type="button">Search</button>
+    <button id="btn">Search</button>
   </div>
 
   <div id="results" class="results"></div>
@@ -276,34 +266,16 @@
   const btn = document.getElementById("btn")
   const results = document.getElementById("results")
   const empty = document.getElementById("empty")
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    const ageStatus = localStorage.getItem("ageVerified")
-
-    if (ageStatus === "yes") {
-      showLibrary()
-    }
-
-    if (ageStatus === "no") {
-      ageGate.innerHTML = "<h1>Access Denied</h1>"
-    }
-  })
 
   function enterSite(){
-    localStorage.setItem("ageVerified", "yes")
-    showLibrary()
-  }
-
-  function denyAccess(){
-    localStorage.setItem("ageVerified", "no")
-    ageGate.innerHTML = "<h1>Access Denied</h1>"
-  }
-
-  function showLibrary(){
     ageGate.style.display = "none"
     library.style.display = "block"
     render(files)
     q.focus()
+  }
+
+  function denyAccess(){
+    alert("Access denied.")
   }
 
   function openFile(f){
@@ -348,6 +320,3 @@
 
 </body>
 </html>
-
-
-
